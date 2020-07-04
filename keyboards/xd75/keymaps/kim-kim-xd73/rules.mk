@@ -20,6 +20,9 @@
 #
 BACKLIGHT_ENABLE = yes       # Enable keyboard backlight functionality
 
+<<<<<<< HEAD
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
 endif
+=======
+>>>>>>> upstream/master

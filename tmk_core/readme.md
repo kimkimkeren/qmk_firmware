@@ -2,7 +2,7 @@ TMK Keyboard Firmware Core Library
 ==================================
 This is a keyboard firmware library with some useful features for Atmel AVR and Cortex-M.
 
-Source code is available here: <https://github.com/tmk/tmk_keyboard/tree/core>
+Source code is available here: <https://github.com/tmk/tmk_keyboard/tree/master/tmk_core>
 
 
 Updates
@@ -48,13 +48,13 @@ Complete firmwares for various keyboards and protocol converters.
 License
 -------
 **GPLv2** or later. Some protocol files are under **Modified BSD License**.
-LUFA, PJRC and V-USB stack have their own license respectively.
+ChibiOS, LUFA and V-USB stack have their own license respectively.
 
 
 
 Build Firmware and Program Controller
 -------------------------------------
-See [doc/build.md](doc/build.md).
+See [doc/build.md](https://github.com/tmk/tmk_keyboard/blob/master/tmk_core/doc/build.md).
 
 
 
@@ -85,9 +85,9 @@ Architecture
       /          /| Keys/Mouse | Protocol  |d| | Action      | | | Protocol  |
      /__________/ |<-----------|  LUFA     |r| |  Layer, Tap | | |  Matrix   |
      |.--------.| |   LED      |  V-USB    |i| |-------------| | |  PS/2,IBM |             __________________
-     ||        || |----------->|  PJRC     |v| | Keymap      | | |  ADB,M0110|  Keys      / /_/_/_/_/_/_/_/ /|
-     ||  Host  || |  Console   |  iWRAP(BT)|e| | Mousekey    | | |  SUN/NEWS |<----------/ /_/_/_/_/_/_/_/ / /
-     ||________||/.<-----------|  UART     |r| | Report      | | |  X68K/PC98| Control  / /_/_/_/_/_/_/_/ / /
+     ||        || |----------->|  iWRAP(BT)|v| | Keymap      | | |  ADB,M0110|  Keys      / /_/_/_/_/_/_/_/ /|
+     ||  Host  || |  Console   |  UART     |e| | Mousekey    | | |  SUN/NEWS |<----------/ /_/_/_/_/_/_/_/ / /
+     ||________||/.<-----------|           |r| | Report      | | |  X68K/PC98| Control  / /_/_/_/_/_/_/_/ / /
      `_========_'/|            |---------------------------------------------|-------->/___ /_______/ ___/ /
      |_o______o_|/             | Sendchar, Print, Debug, Command, ...        |         |_________________|/
                                +---------------------------------------------+              Keyboard
@@ -133,7 +133,6 @@ Files and Directories
 
 ### Keyboard Protocols
 * lufa/     - LUFA USB stack
-* pjrc/     - PJRC USB stack
 * vusb/     - Objective Development V-USB
 * iwrap/    - Bluetooth HID for Bluegiga iWRAP
 * ps2.c     - PS/2 protocol

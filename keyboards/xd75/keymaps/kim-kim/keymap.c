@@ -16,9 +16,13 @@
 #include QMK_KEYBOARD_H
 
 // Fillers to make layering more clear
+<<<<<<< HEAD
 #define _______ KC_TRNS
 #define ___T___ KC_TRNS
 #define XXXXXXX KC_NO
+=======
+#define ___T___ KC_TRNS
+>>>>>>> upstream/master
 
 // Layer shorthand
 #define _QW 0
@@ -67,7 +71,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_LW] = { /* LOWERED */
   { _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  _______, _______, _______, _______, _______, _______, _______, _______  },
   { _______, KC_MPRV, KC_MNXT, KC_VOLU, _______, _______, RGB_TOG, _______, _______, _______, _______, _______, _______, _______, _______  },
+<<<<<<< HEAD
   { _______, KC_MPLY, KC_MSTP, KC_VOLD, _______, _______, RGB_SMOD, _______, _______, _______, _______, _______, _______, _______, _______  },
+=======
+  { _______, KC_MPLY, KC_MSTP, KC_VOLD, _______, _______, RGB_MOD, _______, _______, _______, _______, _______, _______, _______, _______  },
+>>>>>>> upstream/master
   { _______, _______, _______, KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  },
   { _______, MO(_RT), MO(_RT), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  },
  },
@@ -118,10 +126,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+<<<<<<< HEAD
 const uint16_t PROGMEM fn_actions[] = {
 
 };
 
+=======
+>>>>>>> upstream/master
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function

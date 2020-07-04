@@ -1,13 +1,7 @@
-#ifndef DELTASPLIT75_H
-#define DELTASPLIT75_H
-
-#ifdef SUBPROJECT_v2
-    #include "v2.h"
-#endif
-#ifdef SUBPROJECT_protosplit
-    #include "protosplit.h"
-#endif
+#pragma once
 
 #include "quantum.h"
 
+#ifdef KEYBOARD_deltasplit75_v2
+#    include "v2.h"
 #endif

@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+<<<<<<< HEAD
 #ifndef CONFIG_USER_H
 #define CONFIG_USER_H
 
@@ -23,3 +24,9 @@
 #undef BACKLIGHT_BREATHING
 
 #endif
+=======
+#pragma once
+
+// place overrides here
+#undef BACKLIGHT_BREATHING
+>>>>>>> upstream/master

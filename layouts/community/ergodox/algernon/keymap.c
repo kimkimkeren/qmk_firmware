@@ -13,6 +13,7 @@
 #include "eeconfig.h"
 #include "wait.h"
 #include "version.h"
+#include "print.h"
 
 /* Layers */
 
@@ -36,11 +37,14 @@ enum {
   A_MPN,
 
   // Application select keys
-  APP_SLK, // Slack
+  APP_SLK,  // Slack
   APP_EMCS, // Emacs
   APP_TERM, // Terminal
   APP_CHRM, // Chrome
   APP_MSIC, // Music
+  APP_SOCL, // Social
+  APP_PMGR, // Password manager
+  APP_SCL2, // Social #2
 
   // Hungarian layer keys
   HU_AA, // Á
@@ -75,9 +79,6 @@ enum {
   F_BSE = 0,
   F_HUN,
   F_GUI,
-  F_SFT,
-  F_ALT,
-  F_CTRL
 };
 
 /* Custom keycodes */
@@ -142,9 +143,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ,KC_MPLY            ,KC_SLSH     ,KC_Q        ,KC_J    ,KC_K    ,KC_X    ,TD(CT_TMUX)
 ,KC_NO              ,KC_NO       ,KC_NO       ,KC_NO   ,TD(CT_CLN)
 
-                                                            ,F(F_ALT),F(F_GUI)
-                                                                     ,F(F_CTRL)
-                                                    ,KC_BSPC,F(F_SFT),KC_ESC
+                                                            ,OSM(MOD_LALT),F(F_GUI)
+                                                                     ,OSM(MOD_LCTL)
+                                                    ,KC_BSPC,OSM(MOD_LSFT),KC_ESC
 
                                                                 // right hand
                                                                ,M(Fx)     ,M(A_0)  ,M(A_2)    ,M(A_4)  ,M(A_6)  ,M(A_8)   ,M(A_PLVR)
@@ -187,9 +188,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ,KC_NO              ,KC_Z        ,KC_Q        ,KC_QUOT ,KC_COMM ,KC_DOT ,TD(CT_TMUX)
 ,KC_NO              ,KC_NO       ,KC_NO       ,KC_NO   ,TD(CT_CLN)
 
-                                                            ,F(F_ALT),F(F_GUI)
-                                                                     ,F(F_CTRL)
-                                                    ,KC_BSPC,F(F_SFT),KC_ESC
+                                                            ,OSM(MOD_LALT),F(F_GUI)
+                                                                     ,OSM(MOD_LCTL)
+                                                    ,KC_BSPC,OSM(F_LSFT),KC_ESC
 
                                                                 // right hand
                                                                ,M(Fx)     ,M(A_0)   ,M(A_2)  ,M(A_4)  ,M(A_6)  ,M(A_8)  ,M(A_PLVR)
@@ -252,7 +253,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 3: Application select layer
  *
  * ,-----------------------------------------------------.           ,-----------------------------------------------------.
- * |           |Music |Slack |Emacs |Term  |Chrome|      |           |      |      |      |      |      |      |           |
+ * |           |Music |Slack |Emacs |Term  |Chrome|      |           |      |Social|PWMgr |Scl2  |      |      |           |
  * |-----------+------+------+------+------+-------------|           |------+------+------+------+------+------+-----------|
  * |           |      |      |      |      |      |      |           |      |      |      |      |      |      |           |
  * |-----------+------+------+------+------+------|      |           |      |------+------+------+------+------+-----------|
@@ -283,16 +284,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       ,KC_TRNS
                                     ,KC_TRNS ,KC_TRNS ,KC_TRNS
 
-                                                                // right hand
-                                                               ,KC_TRNS ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO   ,KC_TRNS
-                                                               ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS
-                                                                        ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS
-                                                               ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS
-                                                                                 ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS ,KC_TRNS
+                                                               // right hand
+                                                              ,KC_TRNS ,M(APP_SOCL) ,M(APP_PMGR) ,M(APP_SCL2) ,KC_NO   ,KC_NO   ,KC_TRNS
+                                                              ,KC_TRNS ,KC_TRNS     ,KC_TRNS     ,KC_TRNS     ,KC_TRNS ,KC_TRNS ,KC_TRNS
+                                                                       ,KC_TRNS     ,KC_TRNS     ,KC_TRNS     ,KC_TRNS ,KC_TRNS ,KC_TRNS
+                                                              ,KC_TRNS ,KC_TRNS     ,KC_TRNS     ,KC_TRNS     ,KC_TRNS ,KC_TRNS ,KC_TRNS
+                                                                                    ,KC_TRNS     ,KC_TRNS     ,KC_TRNS ,KC_TRNS ,KC_TRNS
 
-                                                               ,KC_TRNS ,KC_TRNS
-                                                               ,KC_TRNS
-                                                               ,KC_TRNS ,KC_TRNS  ,KC_TRNS
+                                                              ,KC_TRNS ,KC_TRNS
+                                                              ,KC_TRNS
+                                                              ,KC_TRNS ,KC_TRNS  ,KC_TRNS
     ),
 
 
@@ -376,8 +377,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                                      // right hand
                                                                      ,KC_TRNS   ,KC_F10  ,KC_F2   ,KC_F4   ,KC_F6   ,KC_F8    ,KC_NO
-                                                                     ,KC_NO     ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO
-                                                                                ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO
+                                                                     ,KC_NO     ,KC_NO   ,KC_NO   ,KC_UP   ,KC_NO   ,KC_NO    ,KC_NO
+                                                                                ,KC_NO   ,KC_LEFT ,KC_DOWN ,KC_RGHT ,KC_NO    ,KC_NO
                                                                      ,KC_NO     ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO
                                                                                          ,KC_NO   ,KC_NO   ,KC_NO   ,KC_NO    ,KC_NO
 
@@ -436,9 +437,6 @@ const uint16_t PROGMEM fn_actions[] = {
    [F_BSE]  = ACTION_LAYER_CLEAR(ON_PRESS)
   ,[F_HUN]  = ACTION_LAYER_INVERT(HUN, ON_PRESS)
   ,[F_GUI]  = ACTION_MACRO_TAP(A_GUI)
-  ,[F_SFT]  = ACTION_MODS_ONESHOT (MOD_LSFT)
-  ,[F_ALT]  = ACTION_MODS_ONESHOT (MOD_LALT)
-  ,[F_CTRL] = ACTION_MODS_ONESHOT (MOD_LCTL)
 };
 
 static void toggle_steno(int pressed)
@@ -536,10 +534,10 @@ static void ang_handle_num_row(uint8_t id, keyrecord_t *record) {
       kc = KC_8;
       break;
     case A_3:
-      kc = KC_6;
+      kc = KC_4;
       break;
     case A_1:
-      kc = KC_4;
+      kc = KC_6;
       break;
 
     case A_0:
@@ -630,10 +628,14 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         if (record->event.pressed) {
           register_code (KC_LGUI);
           if (record->tap.count && !record->tap.interrupted) {
-            if (record->tap.count >= 2) {
+            if (record->tap.count == 2) {
               uprintf("CMD:appsel_start\n");
               layer_on (APPSEL);
               set_oneshot_layer (APPSEL, ONESHOT_START);
+            } else if (record->tap.count >= 3) {
+              uprintf("CMD:appsel_helper\n");
+              layer_off (APPSEL);
+              clear_oneshot_layer_state (ONESHOT_PRESSED);
             }
           } else {
             record->tap.count = 0;
@@ -671,6 +673,21 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
       case APP_MSIC:
         if (record->event.pressed)
           uprintf("CMD:appsel_music\n");
+        break;
+
+      case APP_SOCL:
+        if (record->event.pressed)
+          uprintf("CMD:appsel_social\n");
+        break;
+
+      case APP_PMGR:
+        if (record->event.pressed)
+          uprintf("CMD:appsel_pwmgr\n");
+        break;
+
+      case APP_SCL2:
+        if (record->event.pressed)
+          uprintf("CMD:appsel_social2\n");
         break;
 
         // number row and symbols
@@ -844,14 +861,53 @@ _td_sr_reset (qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
+static void
+_td_brackets_finished (qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    if (state->keycode == TD(CT_LBP))
+      register_code16 (KC_LBRC);
+    else
+      register_code16 (KC_RBRC);
+  } else if (state->count == 2) {
+    if (state->keycode == TD(CT_LBP))
+      register_code16 (KC_LPRN);
+    else
+      register_code16 (KC_RPRN);
+  } else if (state->count == 3) {
+    unicode_input_start();
+
+    if (state->keycode == TD(CT_LBP))
+      register_hex (0x300c);
+    else
+      register_hex (0x300d);
+
+    unicode_input_finish();
+  }
+}
+
+static void
+_td_brackets_reset (qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    if (state->keycode == TD(CT_LBP))
+      unregister_code16 (KC_LBRC);
+    else
+      unregister_code16 (KC_RBRC);
+  } else if (state->count == 2) {
+    if (state->keycode == TD(CT_LBP))
+      unregister_code16 (KC_LPRN);
+    else
+      unregister_code16 (KC_RPRN);
+  }
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
    [CT_CLN] = ACTION_TAP_DANCE_DOUBLE (KC_COLN, KC_SCLN)
   ,[CT_TA]  = {
      .fn = { NULL, ang_tap_dance_ta_finished, ang_tap_dance_ta_reset },
      .user_data = (void *)&((td_ta_state_t) { false, false })
    }
-  ,[CT_LBP] = ACTION_TAP_DANCE_DOUBLE (KC_LBRC, KC_LPRN)
-  ,[CT_RBP] = ACTION_TAP_DANCE_DOUBLE (KC_RBRC, KC_RPRN)
+  ,[CT_LBP] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, _td_brackets_finished, _td_brackets_reset)
+  ,[CT_RBP] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, _td_brackets_finished, _td_brackets_reset)
   ,[CT_TMUX]= ACTION_TAP_DANCE_FN (ang_tap_dance_tmux_finished)
   ,[CT_TPS] = ACTION_TAP_DANCE_FN (ang_tap_dance_tmux_pane_select)
   ,[CT_SR]  = ACTION_TAP_DANCE_FN_ADVANCED (_td_sr_each, _td_sr_finished, _td_sr_reset)
@@ -934,6 +990,29 @@ void matrix_scan_user(void) {
                KC_S, KC_Z, KC_O, KC_N, KC_Y, KC_K, KC_RALT, KC_QUOT, KC_A, KC_M, 0);
     }
 
+    SEQ_ONE_KEY (KC_K) {
+      ang_tap (KC_SPC, LSFT(KC_7), KC_SPC, 0);
+      register_code(KC_LCTL);
+      register_code(KC_LSFT);
+      register_code(KC_U);
+      unregister_code(KC_U);
+      unregister_code(KC_LSFT);
+      unregister_code(KC_LCTL);
+      ang_tap (KC_1, KC_F, KC_4, KC_7, KC_6, 0);
+      register_code (KC_ENT);
+      unregister_code (KC_ENT);
+      ang_tap (KC_END, 0);
+      register_code(KC_LCTL);
+      register_code(KC_LSFT);
+      register_code(KC_U);
+      unregister_code(KC_U);
+      unregister_code(KC_LSFT);
+      unregister_code(KC_LCTL);
+      ang_tap (KC_1, KC_F, KC_4, KC_7, KC_6, 0);
+      register_code (KC_SPC);
+      unregister_code (KC_SPC);
+    }
+
     SEQ_ONE_KEY (KC_G) {
       ang_tap (LSFT(KC_G), KC_E, KC_J, KC_G, KC_RALT, KC_EQL, KC_O,
                KC_RALT, KC_EQL, KC_O,
@@ -948,6 +1027,10 @@ void matrix_scan_user(void) {
       log_enable = !log_enable;
     }
 #endif
+
+    SEQ_ONE_KEY (KC_R) {
+      ang_tap(KC_RALT, 0);
+    }
 
     SEQ_ONE_KEY (KC_T) {
       time_travel = !time_travel;
@@ -1040,7 +1123,10 @@ const qk_ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE
  UCIS_SYM("pi", 0x03c0),
  UCIS_SYM("mouse", 0x1f401),
  UCIS_SYM("micro", 0x00b5),
- UCIS_SYM("tm", 0x2122)
+ UCIS_SYM("tm", 0x2122),
+ UCIS_SYM("child", 0x1f476),
+ UCIS_SYM("family", 0x1F46A),
+ UCIS_SYM("joy", 0x1F602)
 );
 
 bool process_record_user (uint16_t keycode, keyrecord_t *record) {

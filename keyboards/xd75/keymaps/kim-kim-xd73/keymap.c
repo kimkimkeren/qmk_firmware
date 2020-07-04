@@ -16,9 +16,13 @@
 #include QMK_KEYBOARD_H
 
 // Fillers to make layering more clear
+<<<<<<< HEAD
 #define _______ KC_TRNS
 #define ___T___ KC_TRNS
 #define XXXXXXX KC_NO
+=======
+#define ___T___ KC_TRNS
+>>>>>>> upstream/master
 
 // Layer shorthand
 #define _QW 0
@@ -118,10 +122,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+<<<<<<< HEAD
 const uint16_t PROGMEM fn_actions[] = {
 
 };
 
+=======
+>>>>>>> upstream/master
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
